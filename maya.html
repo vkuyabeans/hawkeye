@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Maya Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: #006600; 
+        }
+
+        #maya-logo {
+            width: 150px;
+            height: 150px;
+        }
+
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #006600; 
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+            input[type="submit"]:hover {
+                background-color: #004d00; 
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Maya Payment</h1>
+        <img id="maya-logo" src="mayalogo.jfif" alt="Maya Logo">
+        <form id="paymentForm" onsubmit="return submitForm()">
+            <input type="text" name="account_name" id="account_name" placeholder="Enter your first and last name" required><br>
+            <input type="text" name="account_number" id="account_number" placeholder="Enter your account number" required><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script>
+        function submitForm() {
+            var accountName = document.getElementById('account_name').value.trim(); 
+            var accountNumber = document.getElementById('account_number').value.trim(); 
+
+          
+            var names = accountName.split(' ');
+            var firstName = names[0].charAt(0); 
+            var lastName = names.length > 1 ? names[names.length - 1].charAt(0) : ''; 
+
+            firstName = firstName.toUpperCase();
+            lastName = lastName.toUpperCase();
+
+            if (firstName !== names[0].charAt(0) || lastName !== (names.length > 1 ? names[names.length - 1].charAt(0) : '')) {
+                alert("Please enter both the initial of your first name and last name in uppercase.");
+                return false;
+            }
+
+         
+            var regex = /^09\d{9}$/;
+            if (!regex.test(accountNumber)) {
+                alert("Please enter a valid account number. It should be 11 digits starting with 09.");
+                return false;
+            }
+
+     
+            alert("Payment successful via Maya!");
+          
+            if (confirm("Click OK to redirect to the home page.")) {
+                window.location.href = "loggedin.html";
+                return false; 
+            } else {
+                return false; 
+            }
+        }
+    </script>
+</body>
+</html>

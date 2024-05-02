@@ -1,0 +1,109 @@
+﻿/* Resetting default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Use 100vh to make sure the body takes up the full viewport height */
+}
+
+header {
+  background: #333;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+
+header h1 {
+  margin-bottom: 0.5rem;
+}
+
+nav ul {
+  list-style: none;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 1rem;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+main {
+  flex: 1; /* Allow main content to grow and take up remaining space */
+}
+
+section {
+  padding: 2rem;
+}
+
+.subscription-options {
+  display: flex;
+  justify-content: space-around;
+}
+
+.subscription-option {
+  text-align: center;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  width: 30%;
+}
+
+.subscription-option h3 {
+  margin-bottom: 10px;
+}
+
+.subscription-option button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.subscription-option button:hover {
+  background-color: #0056b3;
+}
+
+section h3 {
+  text-align: center;
+  margin-bottom: auto;
+}
+
+#product-images {
+  margin-bottom: 20px; /* Add space between the product images and the contact section */
+}
+
+.product-image img {
+  display: block; /* Ensure each image appears on its own line */
+  width: 100%; /* Ensure the image takes up the full width of its container */
+  height: 400px; /* Set a fixed height for the images */
+  object-fit: cover; /* Ensure the image covers the entire container */
+  margin-bottom: 20px; /* Add space between images */
+}
+
+#contact {
+  text-align: center; /* Center the contact section */
+}
+
+footer {
+  background: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+}
+
+.popup {
+  display: none;
+}

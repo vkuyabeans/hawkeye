@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Account</title>
+    <link rel="stylesheet" href="StyleSheet1.css">
+    <style>
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            justify-content: center; 
+            align-items: center;
+            background-color: #f2f2f2; 
+            margin: 0; 
+            padding: 0; 
+        }
+
+        header, footer {
+            width: 100%;
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+            color: white;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+            nav ul li {
+                display: inline;
+                margin-right: 10px;
+            }
+
+      
+        section {
+            width: 100%;
+            max-width: 400px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+
+        footer {
+            margin-top: auto;
+        }
+
+       
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            z-index: 999;
+            text-align: center;
+        }
+
+        #popup-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        #popup-buttons button {
+            margin: 0 10px;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            #popup-buttons button.cancel {
+                background-color: #ccc;
+            }
+
+        #popup-message {
+            color: gray;
+        }
+
+        #popup-buttons button.login-now {
+            background-color: gray;
+        }
+
+        #popup-buttons button.later {
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>HAWKEYE SHOOTING CLUB</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="create.html">Account</a></li>
+                <li><a href="#" id="about-link">About Us</a></li>
+                <li><a href="#" id="groups-link">Groups</a></li>
+                <li><a href="#" id="your-account-link">You</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="create-account">
+        <form id="create-account-form" onsubmit="createAccount(event)">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+           <label for="password">Password:</label>
+<input type="password" id="password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" required title="Password must be at least 8 characters long and contain at least 1 uppercase letter, 1 lowercase letter, and 1 number, no symbols">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" pattern="[a-zA-Z0-9._%+-]+@gmail\.com$" required title="Email must be a Gmail address">
+            <button type="submit">Create Account</button>
+        </form>
+    </section>
+
+    <div id="popup">
+        <div id="popup-content">
+            <p id="popup-message">Account successfully created!</p>
+            <div id="popup-buttons">
+                <button class="login-now" onclick="loginNow()">Login Now</button>
+                <button class="cancel later" onclick="later()">Later</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 My Homepage. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function createAccount(event) {
+            event.preventDefault();
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const email = document.getElementById("email").value;
+
+            localStorage.setItem("username", username);
+            localStorage.setItem("password", password);
+            localStorage.setItem("email", email);
+
+            document.getElementById("popup").style.display = "block";
+        }
+
+        function loginNow() {
+            window.location.href = "login.html";
+        }
+
+        function later() {
+            window.location.href = "home.html";
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var navLinks = document.querySelectorAll("nav ul li a");
+            navLinks.forEach(function (link) {
+                link.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    var href = link.getAttribute("href");
+                    if (href) {
+                        window.location.href = href;
+                    }
+                });
+            });
+
+            document.getElementById("about-link").addEventListener("click", function (event) {
+                event.preventDefault();
+                window.location.href = "aboutus.html";
+            });
+
+            document.getElementById("groups-link").addEventListener("click", function (event) {
+                event.preventDefault();
+                window.location.href = "https://www.facebook.com/your-facebook-group";
+            });
+            document.getElementById("subscribe-link").addEventListener("click", function (event) {
+                event.preventDefault();
+                window.location.href = "subscribe.html";
+            });
+
+       
+            document.getElementById("your-account-link").addEventListener("click", function (event) {
+                event.preventDefault();
+                window.location.href = "you.html";
+            });
+        });
+    </script>
+</body>
+</html>

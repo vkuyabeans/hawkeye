@@ -1,0 +1,261 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>My Homepage</title>
+    <link rel="stylesheet" href="StyleSheet1.css">
+    <style>
+        #subscription-form {
+            text-align: center;
+        }
+
+        #subscription-button {
+            margin-top: 20px;
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            #subscription-button:hover {
+                background-color: darkgreen;
+            }
+
+        .payment-options-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .payment-option-button {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+        }
+
+            .payment-option-button img {
+                width: 50px; 
+                height: 50px; 
+            }
+
+        .payment-options {
+            text-align: center;
+            display: none;
+        }
+
+        footer {
+            width: 100%;
+            background-color: #343a40; 
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            position: relative;
+            min-height: 100vh;
+            background-color: darkgray; 
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            flex-grow: 0;
+        }
+
+            header h1 {
+                margin-bottom: 0;
+            }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            nav ul li {
+                display: inline;
+                margin-right: 20px;
+            }
+
+                nav ul li a {
+                    color: #fff;
+                    text-decoration: none;
+                    font-size: 16px;
+                }
+
+        main {
+          
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: #f2f2f2; 
+            padding: 20px;
+        }
+
+        footer, #contact {
+          
+            margin-top: auto;
+            background-color: gray; 
+            padding: 20px; 
+            text-align: center;
+        }
+
+        }
+
+        footer p {
+            margin: 0;
+            color: #fff;
+            font-size: 14px;
+        }
+    </style>
+    <script>
+       
+        function handleTransaction(amount) {
+          
+            var totalElement = document.getElementById("total");
+            var currentTotal = parseFloat(totalElement.textContent);
+            var newTotal = currentTotal + amount;
+            totalElement.textContent = newTotal.toFixed(2);
+        }
+
+       
+        function subscribe() {
+            var radios = document.getElementsByName('subscription');
+            var selectedSubscription = "";
+            var selectedPrice = 0;
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    selectedSubscription = radios[i].value.split(',')[0];
+                    selectedPrice = parseFloat(radios[i].value.split(',')[1]);
+                    break;
+                }
+            }
+            if (selectedSubscription !== "" && selectedPrice !== 0) {
+                handleTransaction(selectedPrice);
+                var confirmation = confirm("You have chosen the " + selectedSubscription + " subscription option and have to pay the price. Please choose your payment method.");
+                if (confirmation) {
+                 
+                    document.getElementById("subscription-form").reset();
+                    document.getElementById("subscription-button").disabled = true;
+        
+                    document.getElementById("payment-options").style.display = "block";
+                }
+            } else {
+                alert("Please select a subscription package.");
+            }
+        }
+
+     
+        function selectPaymentOption(option) {
+            if (option === 'GCash') {
+                window.location.href = 'gcash.html'; 
+            } else if (option === 'Maya') {
+                window.location.href = 'maya.html';
+            } else {
+                alert("You have selected " + option + " as your payment method.");
+              
+            }
+        }
+
+      
+        document.addEventListener("DOMContentLoaded", function () {
+            var navLinks = document.querySelectorAll("nav ul li a");
+            navLinks.forEach(function (link) {
+                link.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    var href = link.getAttribute("href");
+                    if (href) {
+                        window.location.href = href;
+                    }
+                });
+            });
+
+            document.getElementById("about-link").addEventListener("click", function (event) {
+                event.preventDefault();
+                window.location.href = "aboutus.html";
+            });
+            document.getElementById("groups-link").addEventListener("click", function (event) {
+                event.preventDefault();
+                window.location.href = "https://www.facebook.com/your-facebook-group";
+            });
+
+            document.getElementById("groups-link").addEventListener("click", function (event) {
+                event.preventDefault();
+                window.location.href = "https://www.facebook.com/your-facebook-group";
+            });
+
+        
+            document.getElementById("your-account-link").addEventListener("click", function (event) {
+                event.preventDefault();
+                window.location.href = "you.html";
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>HAWKEYE SHOOTING CLUB</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="create.html">Account</a></li>
+                <li><a href="#" id="subscribe-link" class="subscribe-btn">Subscribe</a></li>
+                <li><a href="#" id="about-link">About Us</a></li>
+                <li><a href="#" id="groups-link">Groups</a></li>
+                <li><a href="#" id="your-account-link">You</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Subscription options -->
+    <section id="services">
+        <h2 style="text-align: center;">Services</h2>
+        <form id="subscription-form">
+            <div class="subscription-options">
+                <div class="subscription-option">
+                    <h3>Starters Pack</h3>
+                    <p>₱500/month</p>
+                    <input type="radio" name="subscription" value="Starters Pack,500">
+                </div>
+                <div class="subscription-option">
+                    <h3>Silver Membership</h3>
+                    <p>₱299/month</p>
+                    <input type="radio" name="subscription" value="Silver Membership,299">
+                </div>
+                <div class="subscription-option">
+                    <h3>Gold Membership</h3>
+                    <p>₱799/month</p>
+                    <input type="radio" name="subscription" value="Gold Membership,799">
+                </div>
+                <div class="subscription-option">
+                    <h3>Platinum Membership</h3>
+                    <p>₱1,200/month</p>
+                    <input type="radio" name="subscription" value="Platinum Membership,1200">
+                </div>
+            </div>
+            <button id="subscription-button" type="button" onclick="subscribe()">Subscribe</button>
+        </form>
+    </section>
+
+    <!-- Payment options -->
+    <div class="payment-options-container">
+        <div class="payment-options" id="payment-options">
+            <button class="payment-option-button" onclick="selectPaymentOption('GCash')"><img src="gcashlogo.png" alt="GCash Logo"></button>
+            <button class="payment-option-button" onclick="selectPaymentOption('Maya')"><img src="mayalogo.jfif" alt="Maya Logo"></button>
+        </div>
+    </div>
+
+    <footer>
+        <p>Total: ₱<span id="total">0.00</span></p>
+        <p>&copy; 2024 My Homepage. All rights reserved.</p>
+    </footer>
+</body>
+</html>

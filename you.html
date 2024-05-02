@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Another Page</title>
+    <link rel="stylesheet" href="StyleSheet1.css">
+    <style>
+    
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            background-color: gray; 
+        }
+
+        header {
+            padding: 20px;
+            background-color: #333; 
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            nav ul li {
+                display: inline;
+                margin-right: 20px;
+            }
+
+                nav ul li a {
+                    color: #fff;
+                    text-decoration: none;
+                    font-size: 16px;
+                }
+
+        #content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start; 
+            background-color: #f2f2f2;
+            padding-top: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            text-align: center;
+            padding: 10px;
+            margin-top: auto; 
+        }
+
+       
+        #content h3 {
+            font-size: inherit; 
+            margin-top: 10px; 
+    </style>
+</head>
+<body>
+    <header>
+        <h1>HAWKEYE SHOOTING CLUB</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="create.html">Account</a></li>
+                <li><a href="#" id="subscribe-link" class="subscribe-btn">Subscribe</a></li>
+                <li><a href="#" id="about-link">About Us</a></li>
+                <li><a href="#" id="groups-link">Groups</a></li>
+                <li><a href="#" id="your-account-link">You</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="content">
+        <h2 style="margin-top: 0;">Your Account</h2> 
+        <div id="usernameDisplay"></div>
+        <h3>Your Plan: <span id="planDisplay"></span></h3> 
+    </section>
+
+    <footer>
+        <p>&copy; 2024 My Homepage. All rights reserved.</p>
+    </footer>
+
+    <script>
+      
+        const username = localStorage.getItem("username");
+        const selectedPlan = localStorage.getItem("selectedPlan");
+
+        document.getElementById('usernameDisplay').innerHTML = "Logged-in User: " + username;
+        document.getElementById('planDisplay').innerHTML = selectedPlan;
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var navLinks = document.querySelectorAll("nav ul li a");
+            navLinks.forEach(function (link) {
+                link.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    var href = link.getAttribute("href");
+                    if (href) {
+                        window.location.href = href;
+                    }
+                });
+            });
+
+            document.getElementById("about-link").addEventListener("click", function (event) {
+                event.preventDefault();
+                window.location.href = "aboutus.html";
+            });
+
+            document.getElementById("groups-link").addEventListener("click", function (event) {
+                event.preventDefault();
+                window.location.href = "https://www.facebook.com/your-facebook-group";
+            });
+
+      
+            document.getElementById("your-account-link").addEventListener("click", function (event) {
+                event.preventDefault();
+                window.location.href = "you.html";
+            });
+
+            document.getElementById("subscribe-link").addEventListener("click", function (event) {
+                event.preventDefault();
+                window.location.href = "subscribe.html";
+            });
+        });
+    </script>
+
+    <script>
+       
+        function handleTransaction(amount) {
+            
+            var totalElement = document.getElementById("total");
+            var currentTotal = parseFloat(totalElement.textContent);
+            var newTotal = currentTotal + amount;
+            totalElement.textContent = newTotal.toFixed(2);
+        }
+
+      
+        function subscribe() {
+            var radios = document.getElementsByName('subscription');
+            var selectedSubscription = "";
+            var selectedPrice = 0;
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    selectedSubscription = radios[i].value.split(',')[0];
+                    selectedPrice = parseFloat(radios[i].value.split(',')[1]);
+                    break;
+                }
+            }
+            if (selectedSubscription !== "" && selectedPrice !== 0) {
+                handleTransaction(selectedPrice);
+                var confirmation = confirm("You have chosen the " + selectedSubscription + " subscription option and have to pay the price. Please choose your payment method.");
+                if (confirmation) {
+                   
+                    document.getElementById("subscription-form").reset();
+                    document.getElementById("subscription-button").disabled = true;
+                    // Show payment options
+                    document.getElementById("payment-options").style.display = "block";
+                    // Store selected plan in localStorage
+                    localStorage.setItem("selectedPlan", selectedSubscription);
+                }
+            } else {
+                alert("Please select a subscription package.");
+            }
+        }
+
+        // Function to handle payment option selection
+        function selectPaymentOption(option) {
+            if (option === 'GCash') {
+                window.location.href = 'gcash.html'; 
+            } else if (option === 'Maya') {
+                window.location.href = 'maya.html'; 
+            } else {
+                alert("You have selected " + option + " as your payment method.");
+               
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>My Homepage</title>
+    <link rel="stylesheet" href="StyleSheet1.css">
+    <style>
+       
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            background-color: gray; /* Set the background color to gray */
+            margin: 0; /* Remove default margin */
+        }
+
+        header {
+          
+            flex-grow: 0;
+        }
+
+        main {
+         
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: #f2f2f2;
+        }
+
+        footer, #contact {
+       
+            margin-top: auto;
+            background-color: gray 
+            padding: 20px; 
+        }
+     
+        #contact {
+            padding-top: 20px;
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Logo" class="logo">
+        <h1>HAWKEYE SHOOTING CLUB</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li> 
+                <li><a href="#" id="subscribe-link" class="subscribe-btn">Subscribe</a></li>
+                <li><a href="#" id="about-link">About Us</a></li>
+                <li><a href="#" id="groups-link">Groups</a></li>
+                <li><a href="#" id="your-account-link">You</a></li>
+            </ul>
+        </nav>
+    </header>
+
+     <section id="product-images">
+            <div class="product-image">
+                <img src="shoot.jpg" alt="Product Image 1">
+            </div>
+            <div class="product-image">
+                <img src="shoot3.jpg" alt="Product Image 3">
+            </div>
+        </section>
+
+
+    <main>
+        <section id="contact">
+            <h3>Contact Us</h3>
+            <p>Mindoro West Coastal Rd, Calintaan, Occidental Mindoro, Philippines </p>
+            <p>vincentsantos.bsit@gmail.com</p>
+            <p>09947608549</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My Homepage. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById("about-link").addEventListener("click", function (event) {
+            event.preventDefault();
+            window.location.href = "aboutus.html";
+        });
+
+        document.getElementById("groups-link").addEventListener("click", function (event) {
+            event.preventDefault();
+            window.location.href = "https://www.facebook.com/your-facebook-group";
+        });
+
+       
+        document.getElementById("your-account-link").addEventListener("click", function (event) {
+            event.preventDefault();
+            
+            window.location.href = "you.html";
+        });
+        document.getElementById("subscribe-link").addEventListener("click", function (event) {
+            event.preventDefault();
+            window.location.href = "subscribe.html";
+        });
+    </script>
+</body>
+</html>

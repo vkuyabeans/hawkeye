@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="StyleSheet1.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            background-color: gray; /* Set the background color to gray */
+            margin: 0; /* Remove default margin */
+        }
+
+        header {
+            text-align: center;
+            background-color: #333;
+            padding: 20px;
+        }
+
+        section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px; 
+        }
+
+        footer {
+            margin-top: auto; 
+            background-color: #333; 
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+        }
+
+         footer button {
+                margin-top: 10px;
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>HAWKEYE SHOOTING CLUB</h1>
+    </header>
+
+    <section id="login">
+        <h2>Login</h2>
+        <form id="login-form" onsubmit="login(event)">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br>
+            <button type="submit">Login</button>
+        </form>
+      
+        <button onclick="redirectToCreateAccount()">Create Account</button>
+     
+        <button onclick="clearSavedData()" style="margin-top: 10px;">Clear Saved Data</button>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 My Homepage. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function login(event) {
+            event.preventDefault();
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            const savedUsername = localStorage.getItem("username");
+            const savedPassword = localStorage.getItem("password");
+
+            if (username === savedUsername && password === savedPassword) {
+                window.location.href = "loggedin.html";
+            } else {
+                alert("Invalid username or password. Please try again.");
+            }
+        }
+
+        function redirectToCreateAccount() {
+            window.location.href = "create.html";
+        }
+
+        function clearSavedData() {
+            localStorage.removeItem("username");
+            localStorage.removeItem("password");
+            alert("Saved data cleared successfully.");
+        }
+    </script>
+</body>
+</html>
